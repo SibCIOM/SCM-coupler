@@ -1,0 +1,122 @@
+List of CPL parameters and their default values
+
+
+        namelist/cpl_nml/use_ciaf,ciaf_vers,tidal,use_frac,
+     &     use_frcp,cld_lw_vers,cld_sw_vers,use_xie,use_xie4ncep,
+     &     use_datahum,atm_shift,atm_nadv,td_nadv,old_tides,cld_power,
+     &     aomip_rules,prognostic_run,progn_atm_path,res_atm_path,progn_use_mask,
+     &     progn_write_mode
+
+!   html output file for current state summary, which could be used 
+!   via mobile phone WAP)
+!
+      wap_file='../Output/cpl/state.html' 
+!
+!   use CORE/CIAF or alternative data
+!
+      use_ciaf=.true.                     
+!
+!   if use_ciaf is true, then ciaf_vers specifies CORE version number:
+!   1 - CORE v1.0, 2 - CORE v2.0
+!
+      ciaf_vers=1
+!
+!   use tidal forcing, i.e. correct ocean elevation gradients and 
+!   surface velocity to include tides before addressing them to ICE model
+!
+      tidal=.false.
+!
+!   use fractional lwdn calculation by considering atmospheric reflection
+!   of combined lwup from OCN and from ICE. If .false. lwdn is calculated
+!   separately, so OCN uses a reflection of lwup emited from OCN surface
+!   and ICE uses a reflection of lwup from ICE surface.
+!      
+      use_frac=.false.
+!
+!   multiply atm-ice rad fluxes by frcp
+!      P.S. according to last consideration of ICE code, it must be .false.
+!
+      use_frcp=.false.
+!
+!   use Xie & Arkin precipitation for Arctic
+!
+      use_xie=.true.
+!
+!   use humidity data instead of setting rhum=0.9 (which is an AOMIP convention)
+!
+      use_datahum=.false.
+!
+!   use precipitation data and Xie & Arkin in case they are absent
+!
+      use_xie4ncep=.true.
+!
+!   use of optimized atm data retrieval. If .false., then it is updated
+!   each time when new fluxes are needed by any model (slow)
+!
+      atm_shift=.false.
+!
+!   how many times a day the atm state is to be updated
+!
+      atm_nadv=8
+!
+!   how many times a day the tidal state is to be updated
+!
+      td_nadv=16
+!
+!   use old tide calculation mode, i.e. each time they are needed (slow)
+!
+      old_tides=.true.
+!
+!   this is for experimenting with cloudiness, use cld_power different from
+!   1.0 to consider cld**(cld_power) instead of cld itself
+!
+      cld_power=1.0
+!
+!   use AOMIP convention to calculate swdn and lwdn radiation instead of 
+!   reanalyses data
+!
+      aomip_rules=.true.
+!
+!   use alternative variants for lwdn calculations (if aomip_rules=.true.): 
+!   1 - AOMIP convention, 2 - A.Gill's book
+!
+      cld_lw_vers=1
+!
+!   use alternative variants of sw radiation reaching the surface 
+!   (if aomip_rules=.true.): 1 - AOMIP convention, 2 - Rosati & Miyakoda
+!
+      cld_sw_vers=1
+!
+!   make a prognostic run using 2000-2100 atmospheric model forecast
+!
+      prognostic_run=.false.
+!
+!   directory path where prognostic atm files are placed
+!     file naming convention:  varN.nc   or   sftlf.nc
+!         where var -- any variable name,
+!                      the list of necessary variables is the following
+!                         clt   -- cloudiness (%)
+!                         huss  -- specific humidity (kg/kg)
+!                         pr    -- precipitation rate (kg/s)
+!                         ps    -- sea level pressure (Pa)
+!                         rlds  -- lwdn (W/m2)
+!                         rsds  -- swdn (W/m2)
+!                         tas   -- air temperature (K)
+!                         uas   -- zonal wind speed (m/s)
+!                         vas   -- meridional wind speed (m/s)
+!                 N -- number of 5-year period record storage starting from 2000
+!         sftlf.nc -- contains atm model mask (land fraction for each box)
+!                     It is used when progn_use_mask=.true.
+!
+      progn_atm_path=''
+      progn_use_mask=.true.
+!
+!   storage subdirectory for interpolated atm forcing.
+!   it could be stored and re-used for several runs without run-time 
+!   interpolations. progn_write_mode regulates the mode of use of these
+!   files
+!
+      res_atm_path=''
+      progn_write_mode='w'  ! n - just interpolate, w - store interpolated data, 
+                            ! r - just read and use interpolated data 
+                            ! (original data are ignored)

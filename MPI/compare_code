@@ -1,0 +1,3 @@
+diff mpi_tools.F ../../Compare/MPI/mpi_tools.F > mpi_tools.diff
+find -size 0 -print0 | xargs -0 rm
+

@@ -1,0 +1,17 @@
+diff atm.F ../../Compare/Coupler_8/atm.F > atm.diff
+diff coupler.F ../../Compare/Coupler_8/coupler.F > coupler.diff
+diff cpl_indexes.F ../../Compare/Coupler_8/cpl_indexes.F > cpl_indexes.diff
+diff flux_ao.F ../../Compare/Coupler_8/flux_ao.F > flux_ao.diff
+diff ice_indexes.F ../../Compare/Coupler_8/ice_indexes.F > ice_indexes.diff
+diff Makefile ../../Compare/Coupler_8/Makefile > Makefile.diff
+diff ncepdata.F ../../Compare/Coupler_8/ncepdata.F > ncepdata.diff
+diff ocn_indexes.F ../../Compare/Coupler_8/ocn_indexes.F > ocn_indexes.diff
+diff prepare.F ../../Compare/Coupler_8/prepare.F > prepare.diff
+diff read_atmdata.F ../../Compare/Coupler_8/read_atmdata.F > read_atmdata.diff
+diff struct.F ../../Compare/Coupler_8/struct.F > struct.diff
+diff tides_data.F ../../Compare/Coupler_8/tides_data.F > tides_data.diff
+diff tides.F ../../Compare/Coupler_8/tides.F > tides.diff
+diff timer.F ../../Compare/Coupler_8/timer.F > timer.diff
+diff rivers.F ../../Compare/Coupler_8/rivers.F > rivers.diff
+find -size  0 -print0 |xargs -0 rm
+
